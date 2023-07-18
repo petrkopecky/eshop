@@ -17,8 +17,8 @@ public class OrderServiceImpl implements OrderService{
         this.orderJpaRepository=orderJpaRepository;
         this.productService=productService;
     }
-    public void   addOrder(OrderDto orderDto){
-        orderJpaRepository.save(getOrderEntity(orderDto));
+    public OrderDto   addOrder(OrderDto orderDto){
+        return getOrderDto(orderJpaRepository.save(getOrderEntity(orderDto)));
     }
    public List<OrderDto> gerOrdersList(){
         return getOrdersListDto( orderJpaRepository.findAll());

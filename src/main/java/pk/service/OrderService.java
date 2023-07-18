@@ -6,7 +6,7 @@ import pk.modelDto.OrderDto;
 import java.util.List;
 
 public interface OrderService {
-    void  addOrder(OrderDto orderDto);
+    OrderDto  addOrder(OrderDto orderDto);
     List<OrderDto> gerOrdersList();
     public Order getOrderEntity(OrderDto orderDto);
     public OrderDto getOrderDto(Order order);
