@@ -4,41 +4,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.ProductEntity;
 import pk.model.ProductDto;
+import pk.repository.ProductJpaRepository;
 import pk.repository.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
-    private final ProductRepository productRepository;
+
+    private final ProductJpaRepository productJapRepository;
+
     @Autowired
     public ProductServiceImpl(ProductJpaRepository productJpaRepository){
         this.productJapRepository=productJpaRepository;
     }
     public void addProduct(ProductDto productDto){
 
-        productRepository.addProduct(getProductEntity(productDto));
+        //productRepository.addProduct(getProductEntity(productDto));
+        productJapRepository.save(getProductEntity(productDto));
 
     }
 
     @Override
     public List<ProductDto> getProductsList() {
-        return getProductListDto(productRepository.getProductsList());
+        return getProductListDto(productJapRepository.findAll());
     }
 
     @Override
     public ProductDto getProductById(Long productId) {
-        return getProductDto(productRepository.getProductById(productId));
+        //return getProductDto(productRepository.getProductById(productId));
+        //Optional<ProductEntity> productEntity = productJapRepository.getById(productId);
+        return getProductDto(productJapRepository.getById(productId));
     }
 
     @Override
     public void removeProductById(Long productId) {
-          productRepository.removeProductById(productId);
+        productJapRepository.deleteById(productId);
+        //productRepository.removeProductById(productId);
     }
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        return getProductDto(productRepository.updateProduct(getProductEntity(productDto)));
+        return getProductDto(productJapRepository.save(getProductEntity(productDto)));
+        //return getProductDto(productRepository.updateProduct(getProductEntity(productDto)));
     }
     @Override
     public ProductEntity getProductEntity(ProductDto productDto){
