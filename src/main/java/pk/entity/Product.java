@@ -3,15 +3,19 @@ package pk.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name ="product")
-public class ProductEntity {
+public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
     private Double price;
     private String description;
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
     public Long getId() {
         return id;
@@ -43,6 +47,14 @@ public class ProductEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

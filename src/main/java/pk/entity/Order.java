@@ -6,14 +6,18 @@ import java.util.List;
 
 @Entity
 @Table(name="order")
-public class OrderEntity {
+public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
-    @ManyToMany( mappedBy = "products")
-    private List<ProductEntity> products;
+    @ManyToMany
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -39,11 +43,11 @@ public class OrderEntity {
         this.lastName = lastName;
     }
 
-    public List<ProductEntity> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductEntity> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }

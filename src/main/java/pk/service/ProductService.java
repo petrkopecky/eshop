@@ -1,6 +1,6 @@
 package pk.service;
 
-import pk.entity.ProductEntity;
+import pk.entity.Product;
 import pk.model.ProductDto;
 
 import java.util.List;
@@ -17,11 +17,12 @@ public interface ProductService {
     public ProductDto updateProduct(ProductDto productDto);
 
 
-    public ProductEntity getProductEntity(ProductDto productDto);
+    public Product getProductEntity(ProductDto productDto);
 
-    public ProductDto getProductDto(ProductEntity productEntity);
+    public ProductDto getProductDto(Product product);
 
-    public List <ProductDto> getProductListDto(List<ProductEntity> productDtoList);
+    public List <ProductDto> getProductListDto(List<Product> productList);
 
 
+    public List<Product> getProductList(List<ProductDto> productsDto);
 }

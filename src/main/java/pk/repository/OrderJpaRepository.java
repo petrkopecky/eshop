@@ -2,7 +2,9 @@ package pk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pk.entity.Product;
+import pk.entity.Order;
+
+
 @Repository
-public interface ProductJpaRepository extends JpaRepository<Product, Long> {
+public interface OrderJpaRepository extends JpaRepository<Order, Long> {
 }

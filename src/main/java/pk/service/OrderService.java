@@ -7,30 +7,12 @@ import pk.model.ProductDto;
 
 import java.util.List;
 
-public interface OrderServiceImpl {
+public interface OrderService {
     void  addOrder(OrderDto orderDto);
     List<OrderDto> gerOrderList();
+    public Order getOrderEntity(OrderDto orderDto);
+    public OrderDto getOrderDto(Order order);
+    public List<Order> getOrderList(List<OrderDto> ordersDtoList);
 
-
-
-    @Override
-    public Order getOrderEntity(OrderDto orderDto){
-        Order order =new Order();
-        order.setId(orderDto.getId());
-        order.setFirstName(orderDto.getFirstName());
-        order.setLastName(orderDto.getLastName());
-        return order;
-    }
-
-    public ProductDto getProductDto(Product product){
-        ProductDto productDto=null;
-        if (product !=null) {
-            productDto = new ProductDto();
-            productDto.setId(product.getId());
-            productDto.setName(product.getName());
-            productDto.setPrice(product.getPrice());
-        }
-        return  productDto;
-    }
-
+    public List <OrderDto> getOrderListDto(List<Order> ordersList);
 }

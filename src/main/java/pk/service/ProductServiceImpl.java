@@ -2,7 +2,7 @@ package pk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pk.entity.ProductEntity;
+import pk.entity.Product;
 import pk.model.ProductDto;
 import pk.repository.ProductJpaRepository;
 
@@ -48,27 +48,32 @@ public class ProductServiceImpl implements ProductService{
         //return getProductDto(productRepository.updateProduct(getProductEntity(productDto)));
     }
     @Override
-    public ProductEntity getProductEntity(ProductDto productDto){
-        ProductEntity productEntity=new ProductEntity();
-        productEntity.setId(productDto.getId());
-        productEntity.setName(productDto.getName());
-        productEntity.setPrice(productDto.getPrice());
-        return  productEntity;
+    public Product getProductEntity(ProductDto productDto){
+        Product product =new Product();
+        product.setId(productDto.getId());
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        return product;
     }
 
-    public ProductDto getProductDto(ProductEntity productEntity){
+    public ProductDto getProductDto(Product product){
         ProductDto productDto=null;
-        if (productEntity!=null) {
+        if (product !=null) {
             productDto = new ProductDto();
-            productDto.setId(productEntity.getId());
-            productDto.setName(productEntity.getName());
-            productDto.setPrice(productEntity.getPrice());
+            productDto.setId(product.getId());
+            productDto.setName(product.getName());
+            productDto.setPrice(product.getPrice());
         }
         return  productDto;
     }
 
-    public List <ProductDto> getProductListDto(List<ProductEntity> productDtoList){
-        return productDtoList.stream().map(productEntity->getProductDto(productEntity)).toList();
+    public List <ProductDto> getProductListDto(List<Product> productList){
+        return productList.stream().map(product ->getProductDto(product)).toList();
+    }
+
+    @Override
+    public List<Product> getProductList(List<ProductDto> productsDtoList) {
+        return productsDtoList.stream().map(productDto->getProductEntity(productDto)).toList();
     }
 
 }
