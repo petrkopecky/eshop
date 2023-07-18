@@ -28,7 +28,7 @@ public class Application {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            logger.info("eshop start");
+            logger.info("eshop starting");
 
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
