@@ -1,9 +1,9 @@
-package pk.pk.service;
+package pk.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.ProductEntity;
-import pk.pk.model.ProductDto;
+import pk.model.ProductDto;
 import pk.repository.ProductRepository;
 
 import java.util.List;
