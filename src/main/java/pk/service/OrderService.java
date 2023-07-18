@@ -14,4 +14,7 @@ public interface OrderService {
 
     public List <OrderDto> getOrdersListDto(List<Order> ordersList);
 
+    public OrderDto getOrderById(Long id);
+
+    public void removeOrderById(Long id);
 }
