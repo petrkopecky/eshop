@@ -12,8 +12,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository){
-        this.productRepository=productRepository;
+    public ProductServiceImpl(ProductJpaRepository productJpaRepository){
+        this.productJapRepository=productJpaRepository;
     }
     public void addProduct(ProductDto productDto){
 
