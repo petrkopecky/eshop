@@ -68,12 +68,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     public List <ProductDto> getProductListDto(List<Product> productList){
-        return productList.stream().map(product ->getProductDto(product)).toList();
+        return productList==null?null:productList.stream().map(product ->getProductDto(product)).toList();
     }
 
     @Override
     public List<Product> getProductList(List<ProductDto> productsDtoList) {
-        return productsDtoList.stream().map(productDto->getProductEntity(productDto)).toList();
+        return productsDtoList==null?null:productsDtoList.stream().map(productDto->getProductEntity(productDto)).toList();
     }
 
 }

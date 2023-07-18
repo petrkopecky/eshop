@@ -51,12 +51,12 @@ public class OrderServiceImpl implements OrderService{
     }
     @Override
     public List <OrderDto> getOrdersListDto(List<Order> ordersList){
-        return ordersList.stream().map(product ->getOrderDto(product)).toList();
+        return ordersList==null?null:ordersList.stream().map(product ->getOrderDto(product)).toList();
     }
 
     @Override
     public List<Order> getOrdersList(List<OrderDto> ordersDtoList) {
-        return ordersDtoList.stream().map(orderDto->getOrderEntity(orderDto)).toList();
+        return ordersDtoList==null?null:ordersDtoList.stream().map(orderDto->getOrderEntity(orderDto)).toList();
     }
 
 }

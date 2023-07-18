@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="order")
+@Table(name="eorder")
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,7 +14,7 @@ public class Order {
     private String lastName;
     @ManyToMany
     @JoinTable(
-            name = "order_product",
+            name = "eorder_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
@@ -50,4 +50,5 @@ public class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
 }
