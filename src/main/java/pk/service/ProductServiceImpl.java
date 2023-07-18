@@ -5,10 +5,8 @@ import org.springframework.stereotype.Service;
 import pk.entity.ProductEntity;
 import pk.model.ProductDto;
 import pk.repository.ProductJpaRepository;
-import pk.repository.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
