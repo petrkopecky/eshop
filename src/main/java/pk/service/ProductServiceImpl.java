@@ -3,7 +3,7 @@ package pk.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.Product;
-import pk.model.ProductDto;
+import pk.modelDto.ProductDto;
 import pk.repository.ProductJpaRepository;
 
 import java.util.List;

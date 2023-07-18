@@ -1,7 +1,7 @@
 package pk.service;
 
 import pk.entity.Order;
-import pk.model.OrderDto;
+import pk.modelDto.OrderDto;
 
 import java.util.List;
 

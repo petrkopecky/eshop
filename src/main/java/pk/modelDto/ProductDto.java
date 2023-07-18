@@ -1,4 +1,4 @@
-package pk.model;
+package pk.modelDto;
 
 public class ProductDto {
     private Long id;

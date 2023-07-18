@@ -3,9 +3,7 @@ package pk.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.Order;
-import pk.entity.Product;
-import pk.model.OrderDto;
-import pk.model.ProductDto;
+import pk.modelDto.OrderDto;
 import pk.repository.OrderJpaRepository;
 
 import java.util.List;

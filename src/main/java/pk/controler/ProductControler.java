@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pk.model.ProductDto;
+import pk.modelDto.ProductDto;
 import pk.service.ProductService;
 import pk.repository.EntityNotFoundException;
 

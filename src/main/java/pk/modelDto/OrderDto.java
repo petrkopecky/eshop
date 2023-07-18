@@ -1,9 +1,4 @@
-package pk.model;
-
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import pk.entity.Product;
+package pk.modelDto;
 
 import java.util.List;
 
