@@ -22,8 +22,8 @@ public class OrderServiceImpl implements OrderService{
     public void   addOrder(OrderDto orderDto){
         orderJpaRepository.save(getOrderEntity(orderDto));
     }
-   public List<OrderDto> gerOrderList(){
-        return getOrderListDto( orderJpaRepository.findAll());
+   public List<OrderDto> gerOrdersList(){
+        return getOrdersListDto( orderJpaRepository.findAll());
     }
 
 
@@ -50,12 +50,12 @@ public class OrderServiceImpl implements OrderService{
         return  orderDto;
     }
     @Override
-    public List <OrderDto> getOrderListDto(List<Order> ordersList){
+    public List <OrderDto> getOrdersListDto(List<Order> ordersList){
         return ordersList.stream().map(product ->getOrderDto(product)).toList();
     }
 
     @Override
-    public List<Order> getOrderList(List<OrderDto> ordersDtoList) {
+    public List<Order> getOrdersList(List<OrderDto> ordersDtoList) {
         return ordersDtoList.stream().map(orderDto->getOrderEntity(orderDto)).toList();
     }
 
