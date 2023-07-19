@@ -23,7 +23,6 @@ public class OrderControler {
     }
 
 
-
     @GetMapping("/orders")
     List<OrderDto> orders() {
         return orderService.gerOrdersList();
@@ -31,15 +30,17 @@ public class OrderControler {
 
     @PostMapping("/orders")
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
-        OrderDto newOrderDto=orderService.addOrder(orderDto);
+        OrderDto newOrderDto = orderService.addOrder(orderDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newOrderDto);
 
     }
 
     @GetMapping("/orders/{id}")
     public OrderDto getOrderById(@PathVariable Long id) {
-        OrderDto orderDto = orderService.getOrderById(id);
-        if (orderDto == null) {
+        OrderDto orderDto;
+        try {
+            orderDto = orderService.getOrderById(id);
+        } catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "HTTP Status  (CODE 404)\n");
         }
         return orderDto;
@@ -52,6 +53,19 @@ public class OrderControler {
         } catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "HTTP Status  (CODE 404)\n");
         }
+    }
+
+    @PutMapping("/orders/{id}")
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id, @RequestBody OrderDto orderDto) {
+        orderDto.setId(id);
+        OrderDto updatedOrderDto;
+        try {
+            updatedOrderDto = orderService.updateOrder(orderDto);
+        } catch (EntityNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "HTTP Status  (CODE 404)\n");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(updatedOrderDto);
+
     }
 
 

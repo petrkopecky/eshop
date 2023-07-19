@@ -6,7 +6,7 @@ import pk.modelDto.ProductDto;
 import java.util.List;
 
 public interface ProductService {
-    public void addProduct(ProductDto productDto);
+    public ProductDto addProduct(ProductDto productDto);
 
     public List<ProductDto> getProductsList();
 

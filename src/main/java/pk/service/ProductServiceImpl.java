@@ -19,9 +19,9 @@ public class ProductServiceImpl implements ProductService {
         this.productJapRepository = productJpaRepository;
     }
 
-    public void addProduct(ProductDto productDto) {
+    public ProductDto addProduct(ProductDto productDto) {
 
-        productJapRepository.save(getProductEntity(productDto));
+        return getProductDto(productJapRepository.save(getProductEntity(productDto)));
 
     }
 

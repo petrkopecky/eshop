@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
         this.orderJpaRepository = orderJpaRepository;
         this.productService = productService;
     }
-
+    @Override
     public OrderDto addOrder(OrderDto orderDto) {
         return getOrderDto(orderJpaRepository.save(getOrderEntity(orderDto)));
     }
@@ -47,7 +47,10 @@ public class OrderServiceImpl implements OrderService {
         }
 
     }
-
+    @Override
+    public OrderDto updateOrder(OrderDto orderDto) {
+        return getOrderDto(orderJpaRepository.save(getOrderEntity(orderDto)));
+    }
 
     @Override
     public Order getOrderEntity(OrderDto orderDto) {

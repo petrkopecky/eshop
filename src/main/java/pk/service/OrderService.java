@@ -11,7 +11,7 @@ public interface OrderService {
     public Order getOrderEntity(OrderDto orderDto);
     public OrderDto getOrderDto(Order order);
     public List<Order> getOrdersList(List<OrderDto> ordersDtoList);
-
+    public OrderDto updateOrder(OrderDto orderDto);
     public List <OrderDto> getOrdersListDto(List<Order> ordersList);
 
     public OrderDto getOrderById(Long id);
