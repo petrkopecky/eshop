@@ -58,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
         product.setId(productDto.getId());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
+        product.setDescription(productDto.getDescription());
         return product;
     }
 
@@ -68,6 +69,7 @@ public class ProductServiceImpl implements ProductService {
             productDto.setId(product.getId());
             productDto.setName(product.getName());
             productDto.setPrice(product.getPrice());
+            productDto.setDescription(product.getDescription());
         }
         return productDto;
     }

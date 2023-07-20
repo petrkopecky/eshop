@@ -1,5 +1,8 @@
 package pk.modelDto;
 
+import pk.entity.Product;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDto {
@@ -38,5 +41,12 @@ public class OrderDto {
 
     public void setProductsDto(List<ProductDto> productsDto) {
         this.productsDto = productsDto;
+    }
+
+    public void addProductDto(ProductDto productDto) {
+        if (productsDto == null) {
+            productsDto = new ArrayList<>();
+        }
+        productsDto.add(productDto);
     }
 }
