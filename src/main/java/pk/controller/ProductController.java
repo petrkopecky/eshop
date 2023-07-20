@@ -1,4 +1,4 @@
-package pk.controler;
+package pk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pk.modelDto.ProductDto;
 import pk.service.ProductService;
-import pk.repository.EntityNotFoundException;
+import pk.exception.EntityNotFoundException;
 
 import java.util.List;
 
 @RestController
-public class ProductControler {
+public class ProductController {
 
     private final ProductService productService;
 
     @Autowired
-    public ProductControler(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -41,8 +41,10 @@ public class ProductControler {
 
     @GetMapping("/products/{id}")
     public ProductDto getProductById(@PathVariable Long id) {
-        ProductDto productDto = productService.getProductById(id);
-        if (productDto == null) {
+        ProductDto productDto;
+        try {
+            productDto = productService.getProductById(id);
+        }catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "HTTP Status  (CODE 404)\n");
         }
         return productDto;

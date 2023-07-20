@@ -1,4 +1,4 @@
-package pk.controler;
+package pk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -6,19 +6,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pk.modelDto.OrderDto;
-import pk.modelDto.ProductDto;
-import pk.repository.EntityNotFoundException;
+import pk.exception.EntityNotFoundException;
 import pk.service.OrderService;
 
 import java.util.List;
 
 @RestController
-public class OrderControler {
+public class OrderController {
 
     private final OrderService orderService;
 
     @Autowired
-    public OrderControler(OrderService orderService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 

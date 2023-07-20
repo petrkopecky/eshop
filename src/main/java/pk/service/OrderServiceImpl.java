@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.Order;
 import pk.modelDto.OrderDto;
-import pk.modelDto.ProductDto;
-import pk.repository.EntityNotFoundException;
+import pk.exception.EntityNotFoundException;
 import pk.repository.OrderJpaRepository;
 
 import java.util.List;
@@ -31,12 +30,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto getOrderById(Long orderId) {
-        try {
-            return getOrderDto(orderJpaRepository.getById(orderId));
-        } catch (jakarta.persistence.EntityNotFoundException e) {
-            throw new EntityNotFoundException();
-        }
-    }
+              return getOrderDto(orderJpaRepository.findById(orderId).orElseThrow(() -> new EntityNotFoundException()));
+     }
 
     @Override
     public void removeOrderById(Long orderId) {

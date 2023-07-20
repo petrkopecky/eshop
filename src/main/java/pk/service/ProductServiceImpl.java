@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.Product;
 import pk.modelDto.ProductDto;
-import pk.repository.EntityNotFoundException;
+import pk.exception.EntityNotFoundException;
 import pk.repository.ProductJpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -32,11 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto getProductById(Long productId) {
-        try {
-            return getProductDto(productJapRepository.getById(productId));
-        } catch (jakarta.persistence.EntityNotFoundException e) {
-            throw new EntityNotFoundException();
-        }
+        return getProductDto(productJapRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException()));
     }
 
     @Override
