@@ -53,10 +53,5 @@ public class Order {
         this.products = products;
     }
 
-    public void addProduct(Product product) {
-        if (products == null) {
-            products = new ArrayList<>();
-        }
-        products.add(product);
-    }
+
 }

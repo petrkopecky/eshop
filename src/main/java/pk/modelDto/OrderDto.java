@@ -1,7 +1,5 @@
 package pk.modelDto;
 
-import pk.entity.Product;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class OrderDto {
     private Long id;
     private String firstName;
     private String lastName;
-    private List<ProductDto> productsDto;
+    private List<ProductDto> products;
 
     public Long getId() {
         return id;
@@ -35,18 +33,18 @@ public class OrderDto {
         this.lastName = lastName;
     }
 
-    public List<ProductDto> getProductsDto() {
-        return productsDto;
+    public List<ProductDto> getProducts() {
+        return products;
     }
 
-    public void setProductsDto(List<ProductDto> productsDto) {
-        this.productsDto = productsDto;
+    public void setProducts(List<ProductDto> products) {
+        this.products = products;
     }
 
     public void addProductDto(ProductDto productDto) {
-        if (productsDto == null) {
-            productsDto = new ArrayList<>();
+        if (this.products == null) {
+            this.products = new ArrayList<>();
         }
-        productsDto.add(productDto);
+        this.products.add(productDto);
     }
 }

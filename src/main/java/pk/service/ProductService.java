@@ -17,12 +17,4 @@ public interface ProductService {
     public ProductDto updateProduct(ProductDto productDto);
 
 
-    public Product getProductEntity(ProductDto productDto);
-
-    public ProductDto getProductDto(Product product);
-
-    public List <ProductDto> getProductListDto(List<Product> productList);
-
-
-    public List<Product> getProductList(List<ProductDto> productsDto);
 }

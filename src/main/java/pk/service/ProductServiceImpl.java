@@ -1,8 +1,10 @@
 package pk.service;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pk.entity.Product;
+import pk.mapperDto.ProductMapper;
 import pk.modelDto.ProductDto;
 import pk.exception.EntityNotFoundException;
 import pk.repository.ProductJpaRepository;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductJpaRepository productJapRepository;
+    private ProductMapper productMapper = Mappers.getMapper(ProductMapper.class);
+
 
     @Autowired
     public ProductServiceImpl(ProductJpaRepository productJpaRepository) {
@@ -22,18 +26,18 @@ public class ProductServiceImpl implements ProductService {
 
     public ProductDto addProduct(ProductDto productDto) {
 
-        return getProductDto(productJapRepository.save(getProductEntity(productDto)));
+        return productMapper.productToProductDto(productJapRepository.save(productMapper.productDtoToProduct(productDto)));
 
     }
 
     @Override
     public List<ProductDto> getProductsList() {
-        return getProductListDto(productJapRepository.findAll());
+        return productMapper.productsToProductsDto(productJapRepository.findAll());
     }
 
     @Override
     public ProductDto getProductById(Long productId) {
-        return getProductDto(productJapRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException()));
+        return productMapper.productToProductDto(productJapRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException()));
     }
 
     @Override
@@ -48,39 +52,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        return getProductDto(productJapRepository.save(getProductEntity(productDto)));
+        return productMapper.productToProductDto(productJapRepository.save(productMapper.productDtoToProduct(productDto)));
 
-    }
-
-    @Override
-    public Product getProductEntity(ProductDto productDto) {
-        Product product = new Product();
-        product.setId(productDto.getId());
-        product.setName(productDto.getName());
-        product.setPrice(productDto.getPrice());
-        product.setDescription(productDto.getDescription());
-        return product;
-    }
-
-    public ProductDto getProductDto(Product product) {
-        ProductDto productDto = null;
-        if (product != null) {
-            productDto = new ProductDto();
-            productDto.setId(product.getId());
-            productDto.setName(product.getName());
-            productDto.setPrice(product.getPrice());
-            productDto.setDescription(product.getDescription());
-        }
-        return productDto;
-    }
-
-    public List<ProductDto> getProductListDto(List<Product> productList) {
-        return productList == null ? null : productList.stream().map(product -> getProductDto(product)).toList();
-    }
-
-    @Override
-    public List<Product> getProductList(List<ProductDto> productsDtoList) {
-        return productsDtoList == null ? null : productsDtoList.stream().map(productDto -> getProductEntity(productDto)).toList();
     }
 
 }
