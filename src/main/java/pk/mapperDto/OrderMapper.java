@@ -6,5 +6,5 @@ import pk.modelDto.OrderDto;
 @Mapper(uses = ProductMapper.class)
 public interface OrderMapper {
     OrderDto OrderToOrderDto(Order Order);
-    Order OrderDtoToOrder(OrderDto OrderDto);
+    //Order OrderDtoToOrder(OrderDto OrderDto);
 }
