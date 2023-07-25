@@ -6,7 +6,7 @@ import pk.modelDto.ProductDto;
 
 import java.util.List;
 
-@Mapper
+@Mapper(uses = OrderMapper.class)
 public interface ProductMapper {
     ProductDto productToProductDto(Product product);
     Product productDtoToProduct(ProductDto productDto);

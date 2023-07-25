@@ -6,7 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pk.entity.Role;
 import pk.entity.User;
+import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
 
 import java.util.Optional;
@@ -24,13 +26,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDto userDto userService.findByUserName(username);
+        UserDto userDto= userService.findByUserName(username);
         return new org.springframework.security.core.userdetails.User(
                 userDto.getUserName(),
                 userDto.getPassword(),
                 userDto.getRoles()
                         .stream()
-                        .map(role -> new SimpleGrantedAuthority(role))
+                        .map(role -> new SimpleGrantedAuthority(role.getName()))
                         .collect(Collectors.toSet())
         );
 

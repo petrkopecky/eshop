@@ -4,22 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pk.entity.Role;
 import pk.entity.User;
+import pk.mapperDto.UserMapper;
 import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
     private UserJpaRepository userJpaRepository;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, UserJpaRepository userJpaRepository) {
+    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, UserJpaRepository userJpaRepository, UserMapper userMapper) {
         this.passwordEncoder = passwordEncoder;
         this.userJpaRepository = userJpaRepository;
+        this.userMapper = userMapper;
     }
 
 
@@ -28,7 +34,7 @@ public class UserServiceImpl implements UserService {
         String password = userDto.getPassword();
         String encodedPasswod = passwordEncoder.encode(password);
         userDto.setPasswordHash(encodedPasswod);
-        User user = getUser(userDto);
+        User user = userMapper.userDtoToUser(userDto);
         User newUser = userJpaRepository.save(user);
         return newUser.getId();
     }
@@ -40,8 +46,14 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User with email: " + userName + " not found !");
 
         } else {
-            UserDto userDto = getUserDto(userOptinal.get());
+            UserDto userDto = userMapper.userToUserDto(userOptinal.get());
             return userDto;
         }
 
     }
+
+    List<String> gerRoleNames(List<Role> roles) {
+        List<String> rolesName = roles.stream().map(Role::getName).collect(Collectors.toList());
+        return rolesName;
+    }
+}
