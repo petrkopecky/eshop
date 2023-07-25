@@ -54,8 +54,8 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    List<String> gerRoleNames(List<Role> roles) {
-        List<String> rolesName = roles.stream().map(Role::getName).collect(Collectors.toList());
-        return rolesName;
+    @Override
+    public List<UserDto> getUserList() {
+        return userMapper.usersToUsersDto(userJpaRepository.findAll());
     }
 }

@@ -5,21 +5,17 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pk.entity.Role;
-import pk.entity.User;
+import org.springframework.stereotype.Service;
 import pk.modelDto.UserDto;
-import pk.repository.UserJpaRepository;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-public class UserDetailServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserService userService;
 
 
     @Autowired
-    public UserDetailServiceImpl(UserService userService) {
+    public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
 
