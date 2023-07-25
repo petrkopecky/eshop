@@ -41,6 +41,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .requestMatchers("/users").permitAll()
+                .requestMatchers("/welcome").authenticated()
                 .anyRequest().authenticated()
 
                 .and()

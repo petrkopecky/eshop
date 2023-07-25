@@ -9,6 +9,7 @@ import pk.entity.Role;
 import pk.entity.User;
 import pk.mapperDto.ProductMapper;
 import pk.mapperDto.UserMapper;
+import pk.modelDto.ProductDto;
 import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
 
@@ -32,14 +33,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Long saveUser(UserDto userDto) {
+    public UserDto addUser(UserDto userDto) {
         String password = userDto.getPassword();
         String encodedPasswod = passwordEncoder.encode(password);
         userDto.setPasswordHash(encodedPasswod);
         User user = userMapper.userDtoToUser(userDto);
         User newUser = userJpaRepository.save(user);
-        return newUser.getId();
+        return userMapper.userToUserDto(newUser);
     }
+
 
     @Override
     public UserDto findByUserName(String userName) {

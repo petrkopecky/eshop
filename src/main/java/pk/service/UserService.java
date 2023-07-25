@@ -7,7 +7,9 @@ import pk.modelDto.UserDto;
 import java.util.List;
 
 public interface UserService {
-    public Long saveUser(UserDto userDto);
+
+
+    public UserDto addUser(UserDto userDto);
     public UserDto findByUserName(String userName);
 
     public List<UserDto> getUserList();

@@ -1,6 +1,10 @@
 package pk.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pk.modelDto.ProductDto;
 import pk.modelDto.UserDto;
@@ -20,5 +24,11 @@ public class UserControler {
     @GetMapping("/users")
     List<UserDto> users() {
         return userService.getUserList();
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        UserDto newUserDto = userService.addUser(userDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUserDto);
     }
 }
