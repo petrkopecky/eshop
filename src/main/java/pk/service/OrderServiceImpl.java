@@ -3,11 +3,10 @@ package pk.service;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pk.entity.Order;
+import pk.exception.EntityNotFoundException;
 import pk.mapperDto.OrderMapper;
 import pk.mapperDto.ProductMapper;
 import pk.modelDto.OrderDto;
-import pk.exception.EntityNotFoundException;
 import pk.repository.OrderJpaRepository;
 
 import java.util.List;

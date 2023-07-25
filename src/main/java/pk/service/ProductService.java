@@ -1,6 +1,5 @@
 package pk.service;
 
-import pk.entity.Product;
 import pk.modelDto.ProductDto;
 
 import java.util.List;

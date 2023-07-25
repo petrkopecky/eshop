@@ -5,17 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pk.entity.Role;
 import pk.entity.User;
-import pk.mapperDto.ProductMapper;
 import pk.mapperDto.UserMapper;
-import pk.modelDto.ProductDto;
 import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service

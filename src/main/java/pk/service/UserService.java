@@ -1,7 +1,5 @@
 package pk.service;
 
-import pk.entity.User;
-import pk.modelDto.ProductDto;
 import pk.modelDto.UserDto;
 
 import java.util.List;

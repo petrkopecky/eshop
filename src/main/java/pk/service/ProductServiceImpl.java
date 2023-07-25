@@ -3,14 +3,12 @@ package pk.service;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pk.entity.Product;
+import pk.exception.EntityNotFoundException;
 import pk.mapperDto.ProductMapper;
 import pk.modelDto.ProductDto;
-import pk.exception.EntityNotFoundException;
 import pk.repository.ProductJpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {

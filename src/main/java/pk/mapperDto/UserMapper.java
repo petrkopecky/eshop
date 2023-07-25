@@ -1,9 +1,7 @@
 package pk.mapperDto;
 
 import org.mapstruct.Mapper;
-import pk.entity.Order;
 import pk.entity.User;
-import pk.modelDto.OrderDto;
 import pk.modelDto.UserDto;
 
 import java.util.List;
