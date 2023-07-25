@@ -1,11 +1,13 @@
 package pk.service;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pk.entity.Role;
 import pk.entity.User;
+import pk.mapperDto.ProductMapper;
 import pk.mapperDto.UserMapper;
 import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
@@ -19,13 +21,13 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
     private UserJpaRepository userJpaRepository;
-    private UserMapper userMapper;
+    private UserMapper userMapper= Mappers.getMapper(UserMapper .class);
 
     @Autowired
-    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, UserJpaRepository userJpaRepository, UserMapper userMapper) {
+    public UserServiceImpl(BCryptPasswordEncoder passwordEncoder, UserJpaRepository userJpaRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userJpaRepository = userJpaRepository;
-        this.userMapper = userMapper;
+
     }
 
 
