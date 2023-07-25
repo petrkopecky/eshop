@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserDto userDto= userService.findByUserName(username);
         return new org.springframework.security.core.userdetails.User(
                 userDto.getUserName(),
-                userDto.getPassword(),
+                userDto.getPasswordHash(),
                 userDto.getRoles()
                         .stream()
                         .map(role -> new SimpleGrantedAuthority(role.getName()))

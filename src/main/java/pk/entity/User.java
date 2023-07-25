@@ -10,9 +10,10 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String userName;
     private String passwordHash;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "euser_erole",
             joinColumns = @JoinColumn(name = "user_id"),

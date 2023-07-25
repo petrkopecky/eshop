@@ -26,9 +26,10 @@ public class UserControler {
         return userService.getUserList();
     }
 
-    @PostMapping
+    @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         UserDto newUserDto = userService.addUser(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUserDto);
     }
+
 }
