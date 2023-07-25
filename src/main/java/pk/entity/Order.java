@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="eorder")
+@Table(name="e_order")
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class Order {
     private String lastName;
     @ManyToMany
     @JoinTable(
-            name = "eorder_product",
+            name = "eorder_eproduct",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;

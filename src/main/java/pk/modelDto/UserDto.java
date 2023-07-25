@@ -1,23 +1,10 @@
-package pk.entity;
+package pk.modelDto;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-@Table(name="e_user")
-public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+public class UserDto {
     private Long id;
     private String userName;
     private String passwordHash;
-    @ManyToMany
-    @JoinTable(
-            name = "euser_erole",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private String password;
 
     public Long getId() {
         return id;
@@ -43,11 +30,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
