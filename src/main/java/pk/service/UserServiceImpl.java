@@ -45,8 +45,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User with email: " + userName + " not found !");
 
         } else {
-            UserDto userDto = userMapper.userToUserDto(userOptinal.get());
-            return userDto;
+            return userMapper.userToUserDto(userOptinal.get());
         }
 
     }
@@ -58,8 +57,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User with email: " + userName + " not found !");
 
         } else {
-            User user = userOptinal.get();
-            return user;
+            return userOptinal.get();
         }
 
     }
