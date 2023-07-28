@@ -6,32 +6,63 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pk.entity.User;
 import pk.modelDto.UserDto;
-
+import pk.repository.UserJpaRepository;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final UserService userService;
 
+/*
+    private final UserJpaRepository userJpaRepository;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserJpaRepository userJpaRepository) {
+        this.userJpaRepository = userJpaRepository;
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
+        if (userOptinal.isEmpty()) {
+            throw new UsernameNotFoundException("User with email: " + userName + " not found !");
+
+        } else {
+            User user = userOptinal.get();
+            return new org.springframework.security.core.userdetails.User(
+                    user.getUserName(),
+                    user.getPasswordHash(),
+                    user.getRoles()
+                            .stream()
+                            .map(role -> new SimpleGrantedAuthority(role.getName()))
+                            .collect(Collectors.toSet())
+
+            );
+        }
+    }
+*/
+    private final UserService userService;
 
     @Autowired
     public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
 
-
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDto userDto= userService.findByUserName(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userService.findByUserName(userName);
         return new org.springframework.security.core.userdetails.User(
-                userDto.getUserName(),
-                userDto.getPasswordHash(),
-                userDto.getRoles()
+                user.getUserName(),
+                user.getPasswordHash(),
+                user.getRoles()
                         .stream()
                         .map(role -> new SimpleGrantedAuthority(role.getName()))
                         .collect(Collectors.toSet())
+
         );
-
-
     }
+
 }

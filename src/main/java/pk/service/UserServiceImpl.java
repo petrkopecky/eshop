@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
     @Override
     public UserDto addUser(UserDto userDto) {
         String password = userDto.getPassword();
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDto findByUserName(String userName) {
+    public UserDto findByUserNameDto(String userName) {
         Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
         if (userOptinal.isEmpty()) {
             throw new UsernameNotFoundException("User with email: " + userName + " not found !");
@@ -48,6 +47,19 @@ public class UserServiceImpl implements UserService {
         } else {
             UserDto userDto = userMapper.userToUserDto(userOptinal.get());
             return userDto;
+        }
+
+    }
+
+    @Override
+    public User findByUserName(String userName) {
+        Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
+        if (userOptinal.isEmpty()) {
+            throw new UsernameNotFoundException("User with email: " + userName + " not found !");
+
+        } else {
+            User user = userOptinal.get();
+            return user;
         }
 
     }
