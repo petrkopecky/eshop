@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-/*
+
     private final UserJpaRepository userJpaRepository;
 
     @Autowired
@@ -43,26 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             );
         }
     }
-*/
-    private final UserService userService;
 
-    @Autowired
-    public UserDetailsServiceImpl(UserService userService) {
-        this.userService = userService;
-    }
 
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userService.findByUserName(userName);
-        return new org.springframework.security.core.userdetails.User(
-                user.getUserName(),
-                user.getPasswordHash(),
-                user.getRoles()
-                        .stream()
-                        .map(role -> new SimpleGrantedAuthority(role.getName()))
-                        .collect(Collectors.toSet())
-
-        );
-    }
 
 }
