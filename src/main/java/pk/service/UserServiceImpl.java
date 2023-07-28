@@ -40,26 +40,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findByUserNameDto(String userName) {
-        Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
-        if (userOptinal.isEmpty()) {
-            throw new UsernameNotFoundException("User with email: " + userName + " not found !");
-
-        } else {
-            return userMapper.userToUserDto(userOptinal.get());
-        }
-
+           return userMapper.userToUserDto(findByUserName(userName));
     }
 
     @Override
     public User findByUserName(String userName) {
         Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
         if (userOptinal.isEmpty()) {
-            throw new UsernameNotFoundException("User with email: " + userName + " not found !");
-
+            throw new UsernameNotFoundException("User with userName: " + userName + " not found !");
         } else {
             return userOptinal.get();
         }
-
     }
 
     @Override

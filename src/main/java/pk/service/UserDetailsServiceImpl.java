@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
         if (userOptinal.isEmpty()) {
-            throw new UsernameNotFoundException("User with email: " + userName + " not found !");
+            throw new UsernameNotFoundException("User with userName: " + userName + " not found !");
 
         } else {
             User user = userOptinal.get();
