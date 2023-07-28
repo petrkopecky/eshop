@@ -48,8 +48,6 @@ public class SecurityConfig {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/accessdenied");
-        //.and()
-        //.authenticationProvider(authenticationProvider());
         return http.build();
     }
 }
