@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pk.entity.User;
 import pk.modelDto.UserDto;
 import pk.repository.UserJpaRepository;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,22 +27,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> userOptinal = userJpaRepository.findUserByUserName(userName);
-        if (userOptinal.isEmpty()) {
-            throw new UsernameNotFoundException("User with userName: " + userName + " not found !");
+        User user = userJpaRepository.findUserByUserName(userName).orElseThrow(
+                () -> new UsernameNotFoundException("User with userName: " + userName + " not found !"));
+        return new org.springframework.security.core.userdetails.User(
+                user.getUserName(),
+                user.getPasswordHash(),
+                user.getRoles()
+                        .stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getName()))
+                        .collect(Collectors.toSet())
 
-        } else {
-            User user = userOptinal.get();
-            return new org.springframework.security.core.userdetails.User(
-                    user.getUserName(),
-                    user.getPasswordHash(),
-                    user.getRoles()
-                            .stream()
-                            .map(role -> new SimpleGrantedAuthority(role.getName()))
-                            .collect(Collectors.toSet())
-
-            );
-        }
+        );
     }
 
 }
