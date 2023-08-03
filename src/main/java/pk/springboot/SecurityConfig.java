@@ -47,14 +47,17 @@ public class SecurityConfig {
                 .build();
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/").permitAll()
                 .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic()
+                //.httpBasic()
+                .oauth2Login()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

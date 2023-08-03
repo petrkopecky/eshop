@@ -21,11 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/")
-    String home() {
-        System.out.println("home");
-        return "product";
-    }
+
 
     @GetMapping("/products")
     List<ProductDto> products() {
