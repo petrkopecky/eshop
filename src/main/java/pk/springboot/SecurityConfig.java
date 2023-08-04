@@ -54,16 +54,18 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/").permitAll()
                 .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
+                //.requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+                //.requestMatchers(HttpMethod.POST, "/products/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 //.httpBasic()
-                .oauth2Login()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/accessdenied");
+                .oauth2Login();
+                //.and()
+                //.sessionManagement()
+                //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and()
+                //.exceptionHandling()
+                //.accessDeniedPage("/accessdenied");
         return http.build();
     }
 

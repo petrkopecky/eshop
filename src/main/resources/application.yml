@@ -15,7 +15,7 @@ spring:
         registration:
           github:
             clientId: 0e3bcc4afd318cd6cd67
-            clientSecret: a22d75bcaea77fa5106a65681b90c609d67dd910
+            clientSecret: ${githubclientsecret}
 logging:
   level:
     root: debug
