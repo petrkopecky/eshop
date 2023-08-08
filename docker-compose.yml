@@ -7,10 +7,26 @@ services:
           - POSTGRES_USER=postgres
           - POSTGRES_PASSWORD=postgres
           - POSTGRES_DB=eshop-db
+      networks:
+        - mynet
       ports:
           - '5432:5432'
       volumes:
           - db:/var/lib/postgresql/data
+  web:
+      build:
+        dockerfile: Dockerfile
+      image: eshop-web
+      networks:
+        - mynet
+      ports:
+        - 8080:8080
+      depends_on:
+        - db
 volumes:
     db:
       driver: local
+
+networks:
+  mynet:
+    driver: bridge
